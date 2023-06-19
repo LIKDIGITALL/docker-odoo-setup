@@ -8,6 +8,7 @@ services:
   # application container.
   web:
     image: odoo:16.0
+    platform: linux/x86_64
     depends_on:
         - db
 
@@ -22,7 +23,7 @@ services:
     ports:
       - 9000:8069
 
-    # command: odoo -u all -d odoo-liksoft
+    command: odoo -u sedana_ged -d dev-db
     # Data Volumes
     # --------
     #
@@ -56,6 +57,7 @@ services:
   # container.
   db:
     image: postgres:15
+    platform: linux/x86_64
 
     # Database Environment Variables
     # --------
@@ -70,3 +72,13 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres  # Leave this set to postgres
+
+  adminer: 
+      image: adminer
+      platform: linux/x86_64
+
+      restart: always
+      ports :
+        - 8080:8080
+      depends_on: 
+        - db
