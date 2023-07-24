@@ -23,7 +23,6 @@ services:
     ports:
       - 9000:8069
 
-    command: odoo -u sedana_ged -d dev-db
     # Data Volumes
     # --------
     #
